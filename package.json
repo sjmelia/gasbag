@@ -1,0 +1,8 @@
+{
+  "name": "chat-auth",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mustache-express": "^1.2.2"
+  }
+}
