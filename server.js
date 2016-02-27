@@ -15,12 +15,6 @@ var mongoose = require('mongoose');
 var configDb = require('./app/database.js');
 mongoose.connect(configDb.url);
 
-// Auth - Passport
-var passport = require('passport');
-require('./app/passport.js')(passport);
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Other
 var session = require('express-session');
 app.use(session({ secret: 'thisismysecret' }));
@@ -30,6 +24,15 @@ app.use(flash());
 
 var bodyParser = require("body-parser");
 app.use(bodyParser());
+
+var cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+// Auth - Passport
+var passport = require('passport');
+require('./app/passport.js')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./app/routes.js')(app, passport);
 

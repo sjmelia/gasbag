@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/signup', function(req, res) {
-        res.render('signup', { yo: "Yo!", message: req.flash('signupMessage') });
+        res.render('signup', { message: req.flash('error') });
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
@@ -14,14 +14,31 @@ module.exports = function(app, passport) {
     }));
 
     app.get('/login', function(req, res) {
-        res.render('login', { message: req.flash('loginMessage') });
+        res.render('login', { message: req.flash('error') });
     });
 
-    app.get('/profile', function(req, res) {
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/profile',
+        failureRedirect: '/login',
+        failureFlash: true
+    }));
+
+    app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile', {
-            user: {
-                name: 'Steve'
-            }
+            user: req.user
         });
     });
+
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 };
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/');
+}
