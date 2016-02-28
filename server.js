@@ -18,7 +18,7 @@ mongoose.connect(configDb.url);
 
 // Other
 var session = require('express-session');
-var SESSION_SECRET = 'thisismysecret';
+var SESSION_SECRET = 'bloviator';
 var sessionStore = new session.MemoryStore();
 appSession = session({ 
     secret: SESSION_SECRET,

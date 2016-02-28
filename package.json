@@ -1,5 +1,5 @@
 {
-  "name": "chat-auth",
+  "name": "gasbag",
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
