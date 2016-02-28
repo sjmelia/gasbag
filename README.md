@@ -1,4 +1,7 @@
-Mash up of the socket.io chat example http://socket.io/get-started/chat/ with passport.js auth
+# gasbag
+Mash up of the socket.io chat example with a passport.js authentication example
+
+http://socket.io/get-started/chat/
 
 https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 
