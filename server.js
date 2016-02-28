@@ -2,6 +2,7 @@ var express = require('express');
 
 var app = express();
 var port = process.env.PORT || 3000;
+var server = require('http').createServer(app);
 
 // Templating - Mustache
 var mustacheExpress = require('mustache-express');
@@ -34,7 +35,24 @@ require('./app/passport.js')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+// socket.io
+var io = require('socket.io')(server);
+io.on('connection', function(socket) {
+    console.log("Socket.io connection");
+
+    socket.on('new message', function (data) {
+        io.sockets.emit('new message', {
+            username: socket.username,
+            message: data
+        });
+    });
+
+    socket.on('disconnect', function() {
+        console.log("Socket.io disconnect");
+    });
+});
+
 require('./app/routes.js')(app, passport);
 
-app.listen(port);
+server.listen(port);
 console.log('The magic happens on port ' + port);
