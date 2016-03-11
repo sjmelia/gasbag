@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Chat Authenticated - Profile</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <div class="container-chat">
+            <div class="header-chat">
+                <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+                <a href="/profile" class="btn btn-default btn-sm">Profile</a>
+            </div>
+
+            <div class="page-chat">
+                <div class="chatArea">
+                    <ul class="messages"></ul>
+                </div>
+                <input class="inputMessage" placeholder="Type here..."/>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/scripts/chat.js"></script>
+    </body>
+</html>
